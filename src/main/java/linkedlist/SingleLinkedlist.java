@@ -10,6 +10,9 @@ public class SingleLinkedlist<T> {
         linkedlist.add("b");
         linkedlist.add("c");
         linkedlist.print();
+
+        linkedlist.remove("a");
+        linkedlist.print();
     }
 
     private int length;
@@ -27,7 +30,41 @@ public class SingleLinkedlist<T> {
     }
 
     public void remove(T e) {
+        if (this.head == null) {
+            return;
+        }
 
+        if (this.head.element.equals(e)) {
+            if (this.head.next == null) {
+                this.head = null;
+                this.length--;
+                return;
+            } else {
+                this.head = this.head.next;
+                this.length--;
+            }
+        }
+
+        SNode node = this.head;
+        SNode preNode;
+        while (node.next != null) {
+            preNode = node;
+            node = node.next;
+            if (node.element.equals(e)) {
+                if (node.next == null) {
+                    //尾节点
+                    preNode.next = null;
+                    this.length--;
+                    break;
+                } else {
+                    //非尾节点
+                    preNode.next = node.next;
+                    node = node.next;
+                    this.length--;
+                    continue;
+                }
+            }
+        }
     }
 
     public int size() {
