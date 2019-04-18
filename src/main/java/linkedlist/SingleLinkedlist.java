@@ -7,53 +7,81 @@ public class SingleLinkedlist<T> {
     public static void main(String[] args) {
         SingleLinkedlist linkedlist = new SingleLinkedlist<String>();
         linkedlist.add("a");
-        linkedlist.add("a");
-        linkedlist.add("b");
         linkedlist.add("b");
         linkedlist.add("c");
-        linkedlist.add("b");
-        linkedlist.print();
+        linkedlist.add("d");
 
-        linkedlist.remove("b");
-        linkedlist.print();
+        System.out.println(linkedlist.last().element);
     }
 
     private int length;
 
     private SNode<T> head;
 
+    /**
+     * 尾部添加元素
+     * @param e
+     */
     public void add(T e) {
         SNode newNode = new SNode<T>(e, null);
         if (this.length == 0) {
             this.head = newNode;
         } else {
-            getLast().next = newNode;
+            last().next = newNode;
         }
         length++;
     }
 
+    /**
+     * 特定元素前添加
+     * @param target
+     * @param e
+     */
+    public void insertAt(T target, T e) {
+
+    }
+
+    /**
+     * 特定位置添加
+     * @param index
+     * @param e
+     */
+    public void insertAt(int index, T e) {
+
+    }
+
+    /**
+     * 删除元素
+     * @param e
+     */
     public void remove(T e) {
-        SNode currentNode = this.head;
-        SNode preNode = null;
-        while (currentNode != null) {
-            if (currentNode.element.equals(e)) {
-                if (preNode == null) {
-                    this.head = currentNode.next;
+        SNode c = this.head, p = null;
+        while (c != null) {
+            if (c.element.equals(e)) {
+                if (p == null) {
+                    this.head = c.next;
                 } else {
-                    preNode.next = currentNode.next;
+                    p.next = c.next;
                 }
                 this.length--;
             } else {
-                preNode = currentNode;
+                p = c;
             }
-            currentNode = currentNode.next;
+            c = c.next;
         }
     }
 
+    /**
+     * 链表长度
+     * @return
+     */
     public int size() {
         return this.length;
     }
 
+    /**
+     * 打印链表
+     */
     public void print() {
         if (this.length == 0) {
             return;
@@ -73,17 +101,21 @@ public class SingleLinkedlist<T> {
         System.out.println(sb.toString());
     }
 
-    private SNode<T> getLast() {
+    /**
+     * 获取链表最后的节点
+     * @return
+     */
+    public SNode<T> last() {
         if (this.length == 0) {
             return null;
         } else if (this.length == 1) {
             return this.head;
         } else {
-            SNode<T> node = this.head.next;
-            while (node.next != null) {
-                node = node.next;
+            SNode<T> c = this.head.next;
+            while (c.next != null) {
+                c = c.next;
             }
-            return node;
+            return c;
         }
     }
 
