@@ -7,11 +7,14 @@ public class SingleLinkedlist<T> {
     public static void main(String[] args) {
         SingleLinkedlist linkedlist = new SingleLinkedlist<String>();
         linkedlist.add("a");
+        linkedlist.add("a");
+        linkedlist.add("b");
         linkedlist.add("b");
         linkedlist.add("c");
+        linkedlist.add("b");
         linkedlist.print();
 
-        linkedlist.remove("a");
+        linkedlist.remove("b");
         linkedlist.print();
     }
 
@@ -30,40 +33,20 @@ public class SingleLinkedlist<T> {
     }
 
     public void remove(T e) {
-        if (this.head == null) {
-            return;
-        }
-
-        if (this.head.element.equals(e)) {
-            if (this.head.next == null) {
-                this.head = null;
-                this.length--;
-                return;
-            } else {
-                this.head = this.head.next;
-                this.length--;
-            }
-        }
-
-        SNode node = this.head;
-        SNode preNode;
-        while (node.next != null) {
-            preNode = node;
-            node = node.next;
-            if (node.element.equals(e)) {
-                if (node.next == null) {
-                    //尾节点
-                    preNode.next = null;
-                    this.length--;
-                    break;
+        SNode currentNode = this.head;
+        SNode preNode = null;
+        while (currentNode != null) {
+            if (currentNode.element.equals(e)) {
+                if (preNode == null) {
+                    this.head = currentNode.next;
                 } else {
-                    //非尾节点
-                    preNode.next = node.next;
-                    node = node.next;
-                    this.length--;
-                    continue;
+                    preNode.next = currentNode.next;
                 }
+                this.length--;
+            } else {
+                preNode = currentNode;
             }
+            currentNode = currentNode.next;
         }
     }
 
@@ -76,18 +59,16 @@ public class SingleLinkedlist<T> {
             return;
         }
 
-        if (this.length == 1) {
-            System.out.println(this.head.element.toString());
-        }
-
         StringBuilder sb = new StringBuilder();
-        sb.append(this.head.element.toString());
-        SNode<T> node = this.head.next;
-        for (int i = 1; i < this.length; i++) {
-            sb.append(",");
-            sb.append(node.element.toString());
-            node = node.next;
-        }
+        SNode currentNode = this.head;
+        do {
+            if (sb.length() != 0) {
+                sb.append(",");
+            }
+
+            sb.append(currentNode.element.toString());
+            currentNode = currentNode.next;
+        } while (currentNode != null);
 
         System.out.println(sb.toString());
     }
