@@ -8,38 +8,38 @@ public class SingleLinkedListTest {
     public void TestAddAtLast() {
         SingleLinkedList linkedList = new SingleLinkedList<String>();
         linkedList.addAtLast("a");
-        Assertions.assertEquals(linkedList.size(), 1);
-        Assertions.assertEquals(linkedList.last(), "a");
+        Assertions.assertEquals(1, linkedList.size());
+        Assertions.assertEquals("a", linkedList.last());
     }
 
     @Test
     public void TestAddAtFirst() {
         SingleLinkedList linkedList = new SingleLinkedList<String>();
         linkedList.addAtFirst("a");
-        Assertions.assertEquals(linkedList.size(), 1);
-        Assertions.assertEquals(linkedList.first(), "a");
+        Assertions.assertEquals(1, linkedList.size());
+        Assertions.assertEquals("a", linkedList.first());
     }
 
     @Test()
     public void TestAddAt1() {
         SingleLinkedList linkedList = new SingleLinkedList<String>();
         linkedList.addAt(0, "0");
-        Assertions.assertEquals(linkedList.first(), "0");
-        Assertions.assertEquals(linkedList.size(), 1);
+        Assertions.assertEquals("0", linkedList.first());
+        Assertions.assertEquals(1, linkedList.size());
 
         linkedList.addAt(0, "-1");
-        Assertions.assertEquals(linkedList.last(), "0");
-        Assertions.assertEquals(linkedList.size(), 2);
+        Assertions.assertEquals("0", linkedList.last());
+        Assertions.assertEquals(2, linkedList.size());
 
         linkedList.addAt(1, "-0.5");
-        Assertions.assertEquals(linkedList.last(), "0");
-        Assertions.assertEquals(linkedList.first(), "-1");
-        Assertions.assertEquals(linkedList.size(), 3);
+        Assertions.assertEquals("0", linkedList.last());
+        Assertions.assertEquals("-1", linkedList.first());
+        Assertions.assertEquals(3, linkedList.size());
 
         linkedList.addAt(2, "2");
-        Assertions.assertEquals(linkedList.last(), "0");
-        Assertions.assertEquals(linkedList.first(), "-1");
-        Assertions.assertEquals(linkedList.size(), 4);
+        Assertions.assertEquals("0", linkedList.last());
+        Assertions.assertEquals("-1", linkedList.first());
+        Assertions.assertEquals(4, linkedList.size());
     }
 
     @Test()
@@ -48,8 +48,8 @@ public class SingleLinkedListTest {
         linkedList.addAtFirst("0");
 
         linkedList.addAt("0", "-1");
-        Assertions.assertEquals(linkedList.last(), "0");
-        Assertions.assertEquals(linkedList.size(), 2);
+        Assertions.assertEquals("0", linkedList.last());
+        Assertions.assertEquals(2, linkedList.size());
     }
 
     @Test()
@@ -63,16 +63,16 @@ public class SingleLinkedListTest {
         linkedList.addAtLast("4");
 
         linkedList.remove("0");
-        Assertions.assertEquals(linkedList.size(), 5);
+        Assertions.assertEquals(5, linkedList.size());
         Assertions.assertEquals(linkedList.first(), "1");
 
         linkedList.remove("4");
-        Assertions.assertEquals(linkedList.size(), 4);
-        Assertions.assertEquals(linkedList.last(), "3");
+        Assertions.assertEquals(4, linkedList.size());
+        Assertions.assertEquals("3", linkedList.last());
 
         linkedList.remove("3");
-        Assertions.assertEquals(linkedList.size(), 2);
-        Assertions.assertEquals(linkedList.last(), "2");
+        Assertions.assertEquals(2, linkedList.size());
+        Assertions.assertEquals("2", linkedList.last());
     }
 
     @Test
