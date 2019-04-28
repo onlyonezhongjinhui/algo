@@ -112,8 +112,10 @@ public class SingleLinkedList<T> {
      * 删除元素
      *
      * @param e
+     * @return 删除元素个数
      */
-    public void remove(T e) {
+    public int remove(T e) {
+        int deleteCount = 0;
         SNode c = this.head, p = null;
         while (c != null) {
             if (c.element.equals(e)) {
@@ -123,10 +125,48 @@ public class SingleLinkedList<T> {
                     p.next = c.next;
                 }
                 this.length--;
+                deleteCount++;
             } else {
                 p = c;
             }
             c = c.next;
+        }
+        return deleteCount;
+    }
+
+    /**
+     * 删除最后一个元素
+     */
+    public void removeAtLast() {
+        this.removeAt(this.length - 1);
+    }
+
+    /**
+     * 删除指定下标元素
+     *
+     * @param index
+     * @return
+     */
+    public void removeAt(int index) {
+        if (index >= this.length || index < 0) {
+            throw new IllegalArgumentException(index + " index Out Of Bounds.");
+        }
+
+        SNode c = this.head, p = null;
+        int i = 0;
+        while (c != null) {
+            if (i == index) {
+                if (p == null) {
+                    this.head = c.next;
+                } else {
+                    p.next = c.next;
+                }
+                this.length--;
+                return;
+            }
+            p = c;
+            c = c.next;
+            i++;
         }
     }
 
@@ -159,6 +199,12 @@ public class SingleLinkedList<T> {
         return lastNode == null ? null : lastNode.getElement();
     }
 
+    /**
+     * 元素是否在链表中
+     *
+     * @param e
+     * @return
+     */
     public boolean contains(T e) {
         SNode c = this.head;
         while (c != null) {
@@ -168,6 +214,23 @@ public class SingleLinkedList<T> {
             c = c.next;
         }
         return false;
+    }
+
+    /**
+     * 查询指定元素
+     *
+     * @param e
+     * @return
+     */
+    public T get(T e) {
+        SNode<T> c = this.head;
+        while (c != null) {
+            if (c.element.equals(e)) {
+                return c.element;
+            }
+            c = c.next;
+        }
+        return null;
     }
 
     /**

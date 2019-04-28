@@ -80,13 +80,11 @@ public class TwoWayLinkedList<T> {
     public void addAtFirst(T e) {
         checkNull(e);
 
-        if (this.head == null) {
-            this.head = new TwoWayNode(null, null, e);
-        } else {
-            TwoWayNode newNode = new TwoWayNode(null, this.head, e);
+        TwoWayNode newNode = new TwoWayNode(null, this.head, e);
+        if (this.head != null) {
             this.head.pre = newNode;
-            this.head = newNode;
         }
+        this.head = newNode;
 
         this.length++;
     }
