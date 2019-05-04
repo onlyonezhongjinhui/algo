@@ -4,6 +4,12 @@ package sort;
  * 插入排序
  */
 public class InsertionSort {
+
+    /**
+     * 插入排序
+     *
+     * @param source
+     */
     public static void sort(int[] source) {
         int length = source.length;
         for (int i = 1; i < length; i++) {
