@@ -148,7 +148,7 @@ public class SingleLinkedList<T> {
      * @return
      */
     public void removeAt(int index) {
-        if (index >= this.length || index < 0) {
+        if (index > this.length || index < 0) {
             throw new IllegalArgumentException(index + " index Out Of Bounds.");
         }
 
@@ -186,7 +186,7 @@ public class SingleLinkedList<T> {
      * @return
      */
     public T first() {
-        return this.head.element;
+        return this.head != null ? this.head.element : null;
     }
 
     /**
