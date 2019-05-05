@@ -12,9 +12,9 @@ public class BubbleSort {
      */
     public void sort(int[] source) {
         int length = source.length;
-        //提前退出冒泡循环标志位
-        boolean swap = false;
         for (int i = 0; i < length; i++) {
+            //提前退出冒泡循环标志位
+            boolean swap = false;
             for (int j = 0; j < length - 1 - i; j++) {
                 if (source[j] > source[j + 1]) {
                     int temp = source[j];
