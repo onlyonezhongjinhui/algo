@@ -38,23 +38,23 @@ public class MergeSort {
             }
         }
 
-        if (i == q) {
-            for (; j <= r; ) {
-                temp[k++] = source[j++];
-            }
-        } else {
-            for (; i <= q; ) {
-                temp[k++] = source[i++];
-            }
+        int start = i;
+        int end = q;
+        if (j <= r) {
+            start = j;
+            end = r;
+        }
+        for (; start <= end; ) {
+            temp[k++] = source[start++];
         }
 
         for (int m = 0; m < temp.length; m++) {
-            source[p++] = temp[m];
+            source[p + m] = temp[m];
         }
     }
 
     public static void main(String[] args) {
-        int[] a = new int[]{1, 4, 5, 6, 9, 3, 2, 0};
+        int[] a = new int[]{1, 4, 8, 9, 2, 3, 6};
 
         MergeSort mergeSort = new MergeSort();
         mergeSort.sort(a);
