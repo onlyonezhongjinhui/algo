@@ -55,10 +55,13 @@ public class MergeSort {
 
     public static void main(String[] args) {
         int[] a = new int[]{1, 4, 8, 9, 2, 3, 6};
+        int[] b = new int[]{2, 10, 80, 999, 222, 33, 62};
 
         MergeSort mergeSort = new MergeSort();
         mergeSort.sort(a);
+        mergeSort.sort(b);
 
         Arrays.stream(a).forEach(System.out::println);
+        Arrays.stream(b).forEach(System.out::println);
     }
 }
